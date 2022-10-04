@@ -4,7 +4,21 @@ $(document).ready(function(){
     slidesToShow: 3,
     slidesToScroll: 1,
     cssEase: 'linear',
-    autoplaySpeed: 0
+    autoplaySpeed: 0,
+    responsive: [
+    {
+      breakpoint: 769,
+      settings: {
+        slidesToShow: 2
+      }
+    },
+    {
+      breakpoint: 541,
+      settings: {
+        slidesToShow: 1
+      }
+    }
+  ]
   });
 
   $('.carusel-progress').each(function(i, el) {
