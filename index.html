@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
   <title>Alexander team</title>
   <link rel="stylesheet" type="text/css" href="slick/slick.css" />
   <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
@@ -19,7 +20,7 @@
         </div>
         <div class="header__contacts contacts">
           <div class="contacts__social social">
-            <a href="#" target="_blank" class="social__telegram">
+            <a href="https://t.me/AB_team" target="_blank" class="social__telegram">
               <div>
                 <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -38,7 +39,7 @@
               </div>
             </a>
           </div>
-          <a href="tell:+79889898001" class="contacts__phone">+7-988-98-98-001</a>
+          <a href="tel:+79889898001" class="contacts__phone">+7-988-98-98-001</a>
         </div>
       </div>
     </div>
@@ -56,7 +57,7 @@
             Если вам предстоит посетить Российский суд, поберегите нервы, доверьте полномочия нам!
           </p>
           <div class="promo__btns">
-            <a href="tell:+79889898001" class="btn-call btn-circle btn">Позвонить</a>
+            <a href="tel:+79889898001" class="btn-call btn-circle btn">Позвонить</a>
             <a href="#feedback" class="btn-application btn">Оставить заявку</a>
           </div>
         </div>
@@ -73,7 +74,7 @@
   </section>
   
   <div class="d28"></div>
-  <a href="tell:+79889898001" class="btn-call btn-circle btn-fixed btn-call_hide btn ">Позвонить</a>
+  <a href="tel:+79889898001" class="btn-call btn-circle btn-fixed btn-call_hide btn ">Позвонить</a>
   <section id="ligal" class="ligal">
     <div class="container">
       <h2 class="ligal__title">Оказываемые <span>услуги</span></h2>
@@ -135,7 +136,7 @@
         </div>
       </div>
       <div class="ligal__btns ">
-        <a href="tell:+79889898001" class="btn-call btn">Позвонить</a>
+        <a href="tel:+79889898001" class="btn-call btn">Позвонить</a>
         <a href="#feedback" class="btn-application btn">Оставить заявку</a>
       </div>
     </div>
@@ -370,21 +371,21 @@
   <section id="feedback" class="feedback">
     <div class="wrapper">
       <div class="form">
-        <form class="form__body" action="sender.php" method="post" id="form">
+        <form class="form__body" action="sender.php" method="POST" id="form">
           <h2 class="form__title">Вопросы юристу</h2>
           <p class="form__text">
             Если у вас остались вопросы, оставьте заявки и мы свяжемся с Вами в ближайшее время
           </p>
           <div class="form__item">
-            <input class="form__input _req" id="formName" type="text" name="name" placeholder="Ваше имя" />
+            <input class="form__input _req input-name" id="formName" type="text" name="name" data-validate-field="name" placeholder="Ваше имя" />
           </div>
     
           <div class="form__item">
-            <input class="form__input _req _email" id="formEmail" type="text" name="email" placeholder="Электронная почта"/>
+            <input class="form__input _req _email input-mail" id="formEmail" type="mail" name="email" data-validate-field="email" placeholder="Электронная почта"/>
           </div>
 
           <div class="form__item">
-            <input class="form__input _req _phone" id="formPhone" type="tel" name="phone" placeholder="Номер телефона"/>
+            <input class="form__input _req _phone input-tel" id="formPhone" type="tel" name="phone" data-validate-field="tel" placeholder="Номер телефона"/>
           </div>
     
           <div class="form__item">
@@ -394,7 +395,7 @@
             </div>
           </div>
           <div class="feedback__btns">
-            <a href="tell:+79889898001" class="btn-call btn">Позвонить</a>
+            <a href="tel:+79889898001" class="btn-call btn">Позвонить</a>
             <button class="btn-application btn" type="submit">Оставить заявку</button>
           </div>
         </form>
@@ -415,7 +416,7 @@
             </div>
             <div class="footer__contacts contacts">
               <div class="contacts__social social">
-                <a href="#" target="_blank" class="social__telegram">
+                <a href="https://t.me/AB_team" target="_blank" class="social__telegram">
                   <div>
                     <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -434,12 +435,13 @@
                   </div>
                 </a>
               </div>
-              <a href="tell:+79889898001"  class="contacts__phone">+7-988-98-98-001</a>
+              <a href="tel:+79889898001"  class="contacts__phone">+7-988-98-98-001</a>
             </div>
           </div>
         </div>
   </footer> -->
-
+  <script type="text/javascript" src="js/inputmask.min.js"></script>
+  <script type="text/javascript" src="js/just-validate.min.js"></script>
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="slick/slick.min.js"></script>
   <script type="text/javascript" src="js/app.js"></script>

@@ -62,89 +62,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Form 
 
-  const form = document.getElementById('form');
-  form.addEventListener('submit', formSend);
+    const form = document.querySelector('.form__body');
+    const telSelector = form.querySelector('input[type="tel"]');
+    const inputMask = new Inputmask('+7 (999) 999-99-99');
+    inputMask.mask(telSelector);
 
-  async function formSend(e) {
-    e.preventDefault();
+    const validation = new JustValidate('.form__body');
 
-    let error = formValidate(form);
-
-    let formData = new FormData(form);
-    
-
-    if (error === 0) {
-      form.classList.add('_sending');
-
-      let response = await fetch('sender.php', {
-        method: 'POST',
-        body: formData
-      });
-      if (response.ok) {
-        let result = await response.json();
-        alert(result.message);
-        form.reset();
-        form.classList.remove('_sending');
-      } else {
-        alert("Ошибка отправки данных");
-        form.classList.remove('_sending');
-      }
-    } else {
-      alert('Заполните обязательные поля');
+validation
+  .addField('.input-name', [
+    {
+      rule: 'minLength',
+      value: 3,
+    },
+    {
+      rule: 'maxLength',
+      value: 30,
+    },
+    {
+      rule: 'required',
+      value: true,
+      errorMessage: 'Введите имя!'
     }
-  }
+  ])
+  .addField('.input-mail', [
+    {
+      rule: 'required',
+      value: true,
+      errorMessage: 'Email обязателен',
+    },
+    {
+      rule: 'email',
+      value: true,
+      errorMessage: 'Введите корректный Email',
+    },
+  ])
+  .addField('.input-tel', [
+    {
+      rule: 'required',
+      value: true,
+      errorMessage: 'Телефон обязателен',
+    },
+    {
+      rule: 'function',
+      validator: function() {
+        const phone = telSelector.inputmask.unmaskedvalue();
+        return phone.length === 10;
+      },
+      errorMessage: 'Введите корректный телефон',
+    },
+  ]).onSuccess((event) => {
+    console.log('Validation passes and form submitted', event);
 
+    let formData = new FormData(event.target);
 
-  function formValidate(form) {
-    let error = 0;
-    let formReq = document.querySelectorAll('._req');
+    console.log(...formData);
 
-    for (let i = 0; i < formReq.length; i++) {
-      const input = formReq[i];
-      formRemoveError(input);
+    let xhr = new XMLHttpRequest();
 
-      if (input.classList.contains('_email')) {
-        if (emailTest(input)) {
-          formAddError(input); 
-          error++;
-        }
-      } else if(input.classList.contains('_phone')) {
-          if (phoneTest(input)) {
-            formAddError(input); 
-            error++;
-          }
-      } else if(input.getAttribute("type") === "checkbox" && input.checked === false) {
-        formAddError(input); 
-        error++;
-      } else {
-        if (input.value === '') {
-          formAddError(input); 
-          error++;
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          console.log('Отправлено');
         }
       }
     }
 
-    return error;
-  }
+    xhr.open('POST', 'sender.php', true);
+    xhr.send(formData);
 
-  function formAddError(input) {
-    input.parentElement.classList.add('_error');
-    input.classList.add('_error');
-  }
-  function formRemoveError(input) {
-    input.parentElement.classList.remove('_error');
-    input.classList.remove('_error');
-  }
-
-  //Проверка Email 
-  function emailTest(input) {
-    return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
-  }
-
-  //проверка телефона 
-  function phoneTest(input) {
-    return !/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test(input.value);
-  }
+    event.target.reset();
+  });
 
   // Accordion
   const accordions = document.querySelectorAll('.accordion-questions__item');
